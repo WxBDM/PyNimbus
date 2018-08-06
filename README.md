@@ -4,7 +4,7 @@ This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.
 # Outputs
 If there are no reports for that day, the dataframe will look as such:
 ```   
-      Time  F_Scale  Location  County  State  Lat  Lon  Comments
+   Time  F_Scale  Location  County  State  Lat  Lon  Comments
 0     0        0         0       0      0    0    0         0
 ```
 
