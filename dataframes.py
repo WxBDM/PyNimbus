@@ -3,10 +3,7 @@ import requests
 import pandas as pd
 
 def make_dataframes(data, start_index, end_index):
-    '''This makes the dataframe for each SPC report.
-    First we have to figure out where each data[i] == 'Time'. This should
-    be done beforehand. Once we do that, we can read in our start_index and
-    end_index.
+    '''This makes the dataframe for each hazard in the SPC report.
     
     Inputs:
         data: LIST -> listception... Should be achieved using csv.reader()
@@ -16,7 +13,13 @@ def make_dataframes(data, start_index, end_index):
     
     Returns:
         df: PANDAS DATAFRAME -> dataframe of the information.'''
-        
+    
+    # if there's more than 8 columns, delete the ones that have no data.
+    for i in range(len(data)):
+        if len(data[i]) > 8:
+            data[i][7:] = [''.join(data[i][7:])]
+    
+    # construct pandas dataframes and return them.
     if end_index == start_index + 1:
         df = pd.DataFrame([0] * len(data[start_index]), data[start_index]).T
         return df
