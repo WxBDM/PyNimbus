@@ -1,5 +1,5 @@
 # spc_storm_reports
-This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.gov/climo/reports/today.html) and then seperates into pandas dataframes based upon the hazard.
+This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.gov/climo/reports/today.html) and then seperates into 3 pandas dataframes based upon the hazard.
 
 # Outputs
 If there are no reports for that day, the dataframe will look as such:
@@ -8,7 +8,7 @@ If there are no reports for that day, the dataframe will look as such:
 0     0        0         0       0      0    0    0         0
 ```
 
-If there are reports for that day, the dataframe will look as such:
+If there are reports for that day, a hail dataframe would look as such:
 ```
     Time Size                 Location         County State    Lat      Lon  \
 0   1850  100     1 W LIBRARY JUNCTION     WASHINGTON    PA  40.29   -80.07   
