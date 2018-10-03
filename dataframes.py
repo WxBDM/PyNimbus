@@ -9,7 +9,7 @@ class StormReports:
             # try pandas. Sometimes SSL sslv3 alert handshake failure will pop up.
             # if using url
             df = pd.read_csv(url)
-            
+            self.all = df
             self.tornado = self._make_dataframes_from_pandas(df, 'tor')
             self.wind = self._make_dataframes_from_pandas(df, 'win')
             self.hail = self._make_dataframes_from_pandas(df, 'hail') 
@@ -29,6 +29,8 @@ class StormReports:
             index = [i for i in range(len(reports_in_list)) if reports_in_list[i][0] == 'Time']
             index.append(len(reports_in_list))
             
+            self.all = self._make_dataframes_from_requests(reports_in_list, 
+                index[0], index[3])
             self.tornado = self._make_dataframes_from_requests(reports_in_list, 
                         index[0], index[1])
             self.wind = self._make_dataframes_from_requests(reports_in_list,
@@ -90,6 +92,3 @@ class StormReports:
             lists = [data[i] for i in range(start_index + 1, end_index)]
             df = pd.DataFrame(lists, columns = data[start_index])
             return df
-
-a = StormReports('https://www.spc.noaa.gov/climo/reports/yesterday_filtered.csv')
-
