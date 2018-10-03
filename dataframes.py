@@ -37,12 +37,13 @@ class StormReports:
                         index[2], index[3])
 
     def _make_dataframes_from_pandas(self, df, start_index, end_index, type_df):
+        '''makes the dataframes from pandas reading in csv file (or url)'''
         # grabs the index where the next report begins
         findIndex = df['Time'].tolist()
         index = [i for i in range(len(findIndex)) if findIndex[i] == 'Time']
         index.append(len(findIndex))
         
-        # split the reports.
+        # split the reports based upon hazard.
         if type_df == 'tor':
             df2 = df.drop(index = range(index[0], index[2]))
             return df2
