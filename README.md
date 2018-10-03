@@ -43,8 +43,9 @@ If there are reports for that day, a hail dataframe would look as such:
 12                                              (BOU)
 ```
 
-# Attributes
+# Accessing the individual dataframes
+```
 a = StormReports("url_or_path.csv")
 a.tornado # gives the tornado dataframe
 a.hail # gives the hail dataframe
-a.wind # gives the wind dataframe
+a.wind # gives the wind dataframe```
