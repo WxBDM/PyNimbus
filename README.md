@@ -3,6 +3,14 @@ This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.
 
 Pandas allows the user to input the url of the csv. Sometimes, a SSL SSV3 handshake alert error will pop up. This class prevents this error from showing up by using requests.
 
+# Accessing the individual dataframes
+```
+a = StormReports("url_or_path.csv")
+a.tornado # gives the tornado dataframe
+a.hail # gives the hail dataframe
+a.wind # gives the wind dataframe
+```
+
 # Outputs
 If there are no reports for that day, the dataframe will look as such:
 ```   
@@ -42,10 +50,3 @@ If there are reports for that day, a hail dataframe would look as such:
 11                                              (OAX)  
 12                                              (BOU)
 ```
-
-# Accessing the individual dataframes
-```
-a = StormReports("url_or_path.csv")
-a.tornado # gives the tornado dataframe
-a.hail # gives the hail dataframe
-a.wind # gives the wind dataframe```
