@@ -1,4 +1,4 @@
-# spc_storm_reports
+# Storm Prediction Center Storm Reports to Pandas Dataframe
 This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.gov/climo/reports/today.html) and then seperates into 3 pandas dataframes based upon the hazard.
 
 Pandas allows the user to input the url of the csv. Sometimes, a SSL SSV3 handshake alert error will pop up. This class prevents this error from showing up by using requests.
@@ -18,7 +18,7 @@ If there are no reports for that day, the dataframe will look as such:
 0     0        0         0       0      0    0    0         0
 ```
 
-If there are reports for that day, a hail dataframe would look as such:
+If there are reports for that day, a dataframe would look as such (in this example, hail):
 ```
     Time Size                 Location         County State    Lat      Lon  \
 0   1850  100     1 W LIBRARY JUNCTION     WASHINGTON    PA  40.29   -80.07   
