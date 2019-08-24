@@ -3,7 +3,7 @@ This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.
 
 # Important Announcement  
 8/24/19 - I will be making this into a package and publishing it to PyPi. This will enable you to easily install it on your machine using `pip`. In addition, there will be more functionality with this project, such as (but not limited to) returning SPC outlook and NHC outlook polygons.  
-If you wish to contribute to this project, please get in contact with me via Twitter: @WxBDM (preliminary; until I figure out how to manage pull requests, etc). I will also be tweeting out updates and posting here on an as-needed basis.  
+If you wish to contribute to this project, please get in contact with me via Twitter: @WxBDM (preliminary; until I figure out how to manage pull requests, etc). I will also be tweeting out updates on an as-needed basis.  
 More information to follow at a later time.  
 
 # Accessing the individual dataframes
