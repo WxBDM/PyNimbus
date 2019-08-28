@@ -1,5 +1,7 @@
-# Storm Prediction Center Storm Reports to Pandas Dataframe
-This reads in the SPC storm reports .csv file (found here: https://www.spc.noaa.gov/climo/reports/today.html) and then seperates into 3 pandas dataframes based upon the hazard.
+# PyNimbus
+PyNimbus's goal is to take the "middle man" out of downloading and sorting data found from various National Weather Service products such as NHC and SPC outlooks.  
+
+As of right now, this package only supports Storm Prediction Center Storm Reports (which can be found [here](https://www.spc.noaa.gov/climo/reports/today.html)).
 
 # Important Announcement  
 8/24/19 - I will be making this into a package and publishing it to PyPi. This will enable you to easily install it on your machine using `pip`. In addition, there will be more functionality with this project, such as (but not limited to) returning SPC outlook and NHC outlook polygons.  
