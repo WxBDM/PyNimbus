@@ -56,5 +56,5 @@ If there are reports for that day, a dataframe would look as such (in this examp
 
 
 ## Change Log
-8/24 - See Important Announcement above
-8/28 - Renamed from SPC Storm Reports to ???
+8/24 - See Important Announcement above  
+8/28 - Renamed from SPC Storm Reports to ???  
