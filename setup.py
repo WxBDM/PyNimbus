@@ -10,13 +10,13 @@ from setuptools import setup
 
 setup(
       
-      name='nwstools',
+      name='pynimbus',
       
       version='0.1',
       
-      description='A Python package to grab NWS-related data',
+      description='A Python package to organize National Weather Service product data.',
       
-      url='http://github.com/storborg/funniest',
+      url='https://github.com/WxBDM/SPC-Storm-Reports',
       
       author='Brandon Molyneaux',
       
@@ -24,9 +24,9 @@ setup(
       
       license='MIT',
       
-      packages=['nwstools'],
+      packages=['pynimbus'],
       
-      install_requires = ['csv', 'pandas', 'requests', 'os'],
+      install_requires = ['pandas', 'pyshp'],
       
       zip_safe=False,
       
