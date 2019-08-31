@@ -30,12 +30,12 @@ import pynimbus as pyn
 link = "https://www.spc.noaa.gov/climo/reports/160524_rpts_filtered.csv"
 ddc_reports = pyn.get_spc_storm_reports_df(link, type_of_df = 'tornado')
 ```
-Likewise, with wind or hail, you would change the `type_of_df` parameter to either `wind` or `hail`.  
+Likewise, with wind or hail, you would change the `type_of_df` parameter to either `wind` or `hail`.
 
 ### Working with the link to retrieve a certain day  
 "Today" storm reports: `"https://www.spc.noaa.gov/climo/reports/today_filtered.csv"`  
 "Yesterday" storm reports:  `"https://www.spc.noaa.gov/climo/reports/yesterday_filtered.csv"`  
-Certain day storm reports: `"https://www.spc.noaa.gov/climo/reports/YYMMDD_rpts_filtered.csv"`  
+YYMMDD storm reports: `"https://www.spc.noaa.gov/climo/reports/YYMMDD_rpts_filtered.csv"`  
 
 ### But what if I want to save the dataframe to a CSV file?
 Simply call the pandas `to_csv` method:  
