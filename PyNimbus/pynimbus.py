@@ -30,7 +30,3 @@ def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     # gets the dataframe and returns it.
     reports_obj = spcreports(url_or_path, type_of_df)
     return reports_obj.df
-
-def get_tc(name, year):
-    # returns an object with the polygons
-    pass
