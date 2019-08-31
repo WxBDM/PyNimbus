@@ -26,7 +26,7 @@ setup(
       
       packages=['pynimbus'],
       
-      install_requires = ['pandas', 'pyshp'],
+      install_requires = ['pandas>=0.23.4'],
       
       zip_safe=False,
       

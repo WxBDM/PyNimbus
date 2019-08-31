@@ -1,6 +1,7 @@
-*.pyc
+~*
+.DS_Store
 
-~*.DS_Store
+*.pyc
 
 # spyder project settings
 .spyderproject
@@ -110,4 +111,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
 
