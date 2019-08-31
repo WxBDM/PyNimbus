@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from spcreports import spcreports
+import spcreports
 
 def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     '''Separates the SPC storm reports into respective hazard dataframes.
