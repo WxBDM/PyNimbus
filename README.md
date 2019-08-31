@@ -1,20 +1,25 @@
-﻿
 # PyNimbus
-PyNimbus's goal is to take the "middle man" out of downloading and sorting data found from various National Weather Service products such as NHC and SPC outlooks.  
 
-# Important Announcement
+PyNimbus's goal is to take the "middle man" out of downloading and sorting data found from various National Weather Service products such as NHC and SPC outlooks. This is accomplished through the PyNimbus API. 
 
-8/24/19 - I will be making this into a package and publishing it to PyPi. This will enable you to easily install it on your machine using `pip`. In addition, there will be more functionality with this project, such as (but not limited to) returning SPC outlook and NHC outlook polygons.
+PyNimbus follows the [semantic version](https://semver.org/) numbering system.
 
-If you wish to contribute to this project, please get in contact with me via Twitter: @WxBDM (preliminary; until I figure out how to manage pull requests, etc). I will also be tweeting out updates on an as-needed basis.
+# Installing PyNimbus
 
-See change log at bottom of this README file. More information to follow at a later time.
+PyNimbus can be installed via pip:
+
+```bash
+pip install pynimbus 
+```
+
+# Tutorials
+
+Visit the tutorials page in the documentation explaining the API.
 
 # Important Links
 
- - Documentation
- - Issues
- - Code Repository
- - Tutorials
- - Change Log
-  
+- Documentation
+- Issues
+- Code Repository
+- Tutorials
+- Change Log
