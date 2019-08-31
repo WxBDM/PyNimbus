@@ -20,7 +20,7 @@ Visit the tutorials page in the documentation explaining the API.
 
 # Important Links
 
-- [Documentation]((https://pynimbus.readthedocs.io/en/latest/)
-- [Issues]([https://github.com/WxBDM/PyNimbus/issues](https://github.com/WxBDM/PyNimbus/issues)
-- [Code Repository]([https://github.com/WxBDM/PyNimbus](https://github.com/WxBDM/PyNimbus)
+- [Documentation](https://pynimbus.readthedocs.io/en/latest/)
+- [Issues](https://github.com/WxBDM/PyNimbus/issues)
+- [Code Repository](https://github.com/WxBDM/PyNimbus)
 - Tutorials
