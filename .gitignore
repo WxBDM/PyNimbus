@@ -1,6 +1,8 @@
 ~*
 .DS_Store
 
+*.egg-info
+
 *.pyc
 
 # spyder project settings
