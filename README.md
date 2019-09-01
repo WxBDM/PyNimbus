@@ -1,6 +1,6 @@
 # PyNimbus
 
-[![Documentation Status](https://readthedocs.org/projects/pynimbus/badge/?version=latest)](https://pynimbus.readthedocs.io/en/latest/?badge=latest) [![License](https://opensource.org/licenses/BSD-3-Clause]
+[![Documentation Status](https://readthedocs.org/projects/pynimbus/badge/?version=latest)](https://pynimbus.readthedocs.io/en/latest/?badge=latest) [![License](https://opensource.org/licenses/BSD-3-Clause)]
 
 PyNimbus's goal is to take the "middle man" out of downloading and sorting data found from various National Weather Service products such as NHC and SPC outlooks. This is accomplished through the PyNimbus API. 
 
