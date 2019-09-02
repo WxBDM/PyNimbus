@@ -9,7 +9,7 @@ Specifically, this tutorial explains how to use ``get_spc_storm_reports_df``.
 Summary
 -------
 
-This method separates the SPC storm reports into a pandas dataframes. When called, it will return a pandas dataframe with the associated hazard.
+This method separates the SPC storm reports into a pandas dataframe. When called, it will return a pandas dataframe with the associated hazard.
 
 Required argument: ``url_or_path`` (string)- The URL to the storm reports CSV *or* path to CSV
 
@@ -28,9 +28,9 @@ PyNimbus uses pandas to get and format the storm reports. To begin, use the ``ge
 	today_reports = pyn.get_spc_storm_reports_df(link)
 
 
-This will return a pandas dataframe with all 3 hazards: tornado, wind, and hail (as this is the default value; more on this later). Note that you can also use a CSV file located your machine instead of a link - simply replace the `link` variable with the path to the associated CSV file. If you opt for this, the associated file should not be modified in terms of columns (i.e. adding and removing columns).  
+This will return a pandas dataframe with all 3 hazards: tornado, wind, and hail (as this is the default value; more on this later). Note that you can also use a CSV file located your machine instead of a link - simply replace the ``link`` variable with the path to the associated CSV file. If you opt for this, the associated file should not be modified in terms of columns (i.e. adding and removing columns).  
 
-Also note that the ``url_or_path`` is a required argument (in the above example, the parameter being passed in is `link`).  
+Also note that the ``url_or_path`` is a required argument (in the above example, the parameter being passed in is ``link``).  
 
 -----------------------
 Working with parameters
@@ -53,10 +53,12 @@ But now suppose you only want the tornado reports:
      link = "https://www.spc.noaa.gov/climo/reports/160524_rpts_filtered.csv"
      ddc_reports = pyn.get_spc_storm_reports_df(link, type_of_df = 'tornado')
 
-Likewise, with wind or hail, you would change the `type_of_df` parameter to either `wind` or `hail`.
+Likewise, with wind or hail, you would change the ``type_of_df`` parameter to either "wind" or "hail".
 
 Working with the link to retrieve a certain day
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To make things easy, below are links to the associated CSV files on the SPC website.
 
 "Today" storm reports: ``"https://www.spc.noaa.gov/climo/reports/today_filtered.csv"``
 
@@ -87,5 +89,5 @@ Additional resources
 - `Pandas 0.25.0 documentation <https://pandas.pydata.org/pandas-docs/stable/>`_
 - `PyNimbus GitHub repository <https://github.com/WxBDM/PyNimbus>`_
 
-Last updated: 8/31/19
+Last updated: 9/2/19
 
