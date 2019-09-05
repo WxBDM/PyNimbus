@@ -6,11 +6,37 @@ PyNimbus's goal is to take the "middle man" out of downloading and sorting data 
 
 PyNimbus follows the [semantic version](https://semver.org/) numbering system.
 
+## PyNimbus Function Naming Convention
+
+PyNimbus follows a fairly straight-forward naming convention. Here is how it is mapped out: `get_<NWS BRANCH>_<PRODUCT>_<DATA TYPE>`.
+
+For example, if you wanted to obtain the SPC storm reports as a dataframe, the function name would be `get_spc_storm_reports_df`.
+
+If you are unfamiliar with the various National Weather Service branches, it is worth noting the following abbreviations:
+
+- SPC: [Storm Prediction Center](https://www.spc.noaa.gov/)
+
+- NHC: [National Hurricane Center](https://www.nhc.noaa.gov/)
+
+Below is a table with the (current) API functions. See the documentation for more information regarding these.
+
+| Branch | Product       | Return Type      | Method name                  | Tutorial Link                                                                 |
+|:------:|:-------------:|:----------------:|:----------------------------:|:-----------------------------------------------------------------------------:|
+| SPC    | Storm Reports | pandas dataframe | `get_spc_storm_reports_df()` | [Link](https://pynimbus.readthedocs.io/en/latest/tutorials/stormreports.html) |
+
+Future implementations include:
+
+- Categorial and Probabilistic outlooks from SPC
+
+- Previous hurricane information from NHC
+
+- NHC outlooks
+
 ## Installing PyNimbus
 
-The easiest way to install is through pip: ``pip install pynimbus``
+The easiest way to install is through pip: `pip install pynimbus`
 
-Note that the  only requires pandas >= 0.23.2
+Note that the only requires pandas >= 0.23.2
 
 ## License
 
