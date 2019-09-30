@@ -24,8 +24,18 @@ setup(
     install_requires = ['pandas>=0.23.4'],
     zip_safe=True,
     classifiers=[
+    "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7"],
-    keywords = "meteorology weather"
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Natural Language :: English",
+    ],
+    keywords = "meteorology weather",
+    project_urls = {
+        'Documentation' : 'https://pynimbus.readthedocs.io/en/latest/',
+        'GitHub Repo' : 'https://github.com/WxBDM/PyNimbus',
+        'Issues' : 'https://github.com/WxBDM/PyNimbus/issues'
+    }
 )

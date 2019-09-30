@@ -23,5 +23,7 @@ class nhcOutlooks():
                 'Priscilla': 16, 'Raymond': 17, 'Sonia': 18, 'Tico': 19, 'Velma': 20,
                 'Wallis': 21, 'Xina': 22, 'York': 23, 'Zelda': 24
         }
+    
+    def past_cyclones(cyclone_name)
 
     
