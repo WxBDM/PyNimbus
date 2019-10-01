@@ -8,22 +8,70 @@ Created on Wed Aug 28 09:12:46 2019
 
 class nhcOutlooks():
     
-    def __init__(self): 
-        self.atlantic_hurricanes = {
-                'Andrea': 1, 'Barry': 2, 'Chantal': 3, 'Dorian': 4, 'Erin': 5,
-                'Fernand': 6, 'Gabrielle': 7, 'Humberto': 8, 'Imelda': 9, 
-                'Jerry': 10, 'Karen': 11, 'Lorenzo': 12, 'Melissa': 13,
-                'Nestor': 14, 'Olga': 15, 'Pablo': 16, 'Rebekah': 17,
-                'Sebastien': 18, 'Tanya': 19, 'Van': 20, 'Wendy': 21
-        }
-        self.pacific_hurricanes = {
-                'Alvin': 1, 'Barbara': 2, 'Cosme': 3, 'Dalila': 4, 'Erick': 5,
-                'Flossie': 6, 'Gil': 7, 'Henriette': 8, 'Ivo': 9, 'Juliette': 10,
-                'Kiko': 11, 'Lorena': 12, 'Mario': 13, 'Narda': 14, 'Octave': 15,
-                'Priscilla': 16, 'Raymond': 17, 'Sonia': 18, 'Tico': 19, 'Velma': 20,
-                'Wallis': 21, 'Xina': 22, 'York': 23, 'Zelda': 24
-        }
+    def __init__(self, name, year, advisory_num): 
+        self.name = name
+        self.yr = int(year)
+        self.adv_n = str(advisory_num)
+        
+        self._check_inputs()
     
-    def past_cyclones(cyclone_name)
+    def _import_hurricane_info():
+        # return hurrs[self.yr]
+        # for now, assume year is 2019.
+        return {
+            "Andrea"        : ["al01", "Atlantic"],
+            "Barry"         : ["al02", "Atlantic"],
+            "Three"         : ["al03", "Atlantic"],
+            "Chantal"       : ["al04", "Atlantic"],
+            "Dorian"        : ["al05", "Atlantic"],
+            "Erin"          : ["al06", "Atlantic"],
+            "Fernand"       : ["al07", "Atlantic"],
+            "Gabrielle"     : ["al08", "Atlantic"],
+            "Humberto"      : ["al09", "Atlantic"],
+            "Jerry"         : ["al10", "Atlantic"],
+            "Imelda"        : ["al11", "Atlantic"],
+            "Karen"         : ["al12", "Atlantic"],
+            "Lorenzo"       : ["al13", "Atlantic"],
+            "Alvin"         : ["ep01", "East Pacific"],
+            "Barbara"       : ["ep02", "East Pacific"],
+            "Cosme"         : ["ep03", "East Pacific"],
+            "Four-e"        : ["ep04", "East Pacific"],
+            "Dalila"        : ["ep05", "East Pacific"],
+            "Erick"         : ["ep06", "East Pacific"],
+            "Flossie"       : ["ep07", "East Pacific"],
+            "Gil"           : ["ep08", "East Pacific"],
+            "Henriette"     : ["ep09", "East Pacific"],
+            "Ivo"           : ["ep10", "East Pacific"],
+            "Juliette"      : ["ep11", "East Pacific"],
+            "Akoni"         : ["ep12", "East Pacific"],
+            "Kiko"          : ["ep13", "East Pacific"],
+            "Mario"         : ["ep14", "East Pacific"],
+            "Lorena"        : ["ep15", "East Pacific"],
+            "Narda"         : ["ep16", "East Pacific"]
+            }
+        # import the hurricane info; for now, hardcoded
+    
+    def _check_inputs(self):
+        # checks to see if parameters are correct
+        if not 2008 <= self.yr <= 2019:
+            raise ValueError("Year must be between 2008 and current year")
+        
+        if self.name not in self._import_hurricane_info():
+            raise ValueError("Cyclone name not in the specified year. Double check spelling and year.")
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

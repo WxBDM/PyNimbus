@@ -46,7 +46,7 @@ If your code is accepted, congratulations! You have successfully made a contribu
 
 #### IMPORTANT
 
-Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git checkout` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
+Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git branch` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
 
 ### Hearing back from Pull Requests
 
