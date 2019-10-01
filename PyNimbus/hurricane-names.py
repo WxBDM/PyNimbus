@@ -1,7 +1,6 @@
-#Dictionary to store hurricane names
+#Dictionaries to store hurricane names
 
-#Year 2019
-
+#2019
 h_2019 = {  "Andrea" : ["al01", "Atlantic"],
             "Barry" :  ["al02", "Atlantic"],
             "Three" : ["al03", "Atlantic"],
@@ -32,11 +31,8 @@ h_2019 = {  "Andrea" : ["al01", "Atlantic"],
             "Lorena" : ["ep15", "East Pacific"],
             "Narda" : ["ep16", "East Pacific"]
         }
-#----------------------------------------------------------------------------
 
 #Year 2018
-
-
 h_2018 = {  "Alberto" : ["al01", "Atlantic"],
             "Beryl" :  ["al02", "Atlantic"],
             "Chris" : ["al03", "Atlantic"],
@@ -80,11 +76,7 @@ h_2018 = {  "Alberto" : ["al01", "Atlantic"],
             "Xavier" : ["ep25", "East Pacific"]
         }
 
-#------------------------------------------------------------------------
-
 #Year 2017
-
-
 h_2017 ={
             "Arlene" : ["al01","Atlantic"],
             "Bret" : ["al02","Atlantic"],
@@ -127,11 +119,7 @@ h_2017 ={
             "Selma" : ["ep20", "East Pacific"]
         }
 
-#------------------------------------------------------------------------
-
 #Year 2016
-
-
 h_2016 ={
         "Alex" : ["al01","Atlantic"],
         "Bonnie" : ["al02","Atlantic"],
@@ -173,12 +161,7 @@ h_2016 ={
         "Otto" : ["ep22", "East Pacific"]
 	    }
 
-
-
-#------------------------------------------------------------------------
-
 #Year 2015
-
 h_2015 ={
         "Ana" : ["al01","Atlantic"],
         "Bill" : ["al02","Atlantic"],
@@ -216,11 +199,7 @@ h_2015 ={
         "Sandra" : ["ep22", "East Pacific"]
 	   }
 
-#------------------------------------------------------------------------
-
 #Year 2014
-
-
 h_2014 ={
         "Arthur" : ["al01","Atlantic"],
         "Two" : ["al02","Atlantic"],
@@ -254,11 +233,7 @@ h_2014 ={
         "Vance" : ["ep21", "East Pacific"]
       }
 
-#------------------------------------------------------------------------
-
 #Year 2013
-
-
 h_2013 ={
         "Andrea" : ["al01","Atlantic"],
         "Barry" : ["al02","Atlantic"],
@@ -294,11 +269,7 @@ h_2013 ={
         "Sonia" : ["ep18", "East Pacific"]
 	    }
 
-#------------------------------------------------------------------------
-
 #Year 2012
-
-
 h_2012 ={
         "Alberto" : ["al01","Atlantic"],
         "Beryl" : ["al02","Atlantic"],
@@ -337,10 +308,8 @@ h_2012 ={
         "Paul" : ["ep16", "East Pacific"],
         "Rosa" : ["ep17", "East Pacific"]
 	   }
-#------------------------------------------------------------------------
 
-#Year 2011
-
+# 2011
 h_2011 ={
         "Arlene" : ["al01","Atlantic"],
         "Bret" : ["al02","Atlantic"],
@@ -376,10 +345,7 @@ h_2011 ={
         "Kenneth" : ["ep13", "East Pacific"]
 	   }
 
-#------------------------------------------------------------------------
-
 #Year 2010
-
 h_2010 ={
             "Alex" : ["al01","Atlantic"],
             "Two" : ["al02","Atlantic"],
@@ -417,10 +383,7 @@ h_2010 ={
         }
 
 
-#------------------------------------------------------------------------
-
 #Year 2009
-
 h_2009 ={
         "One" : ["al01","Atlantic"],
         "Ana" : ["al02","Atlantic"],
@@ -454,10 +417,8 @@ h_2009 ={
         "Patricia" : ["ep19", "East Pacific"],
         "Rick" : ["ep20", "East Pacific"]
 	    }
-#------------------------------------------------------------------------
 
 #Year 2008
-
 h_2008 ={
         "Arthur" : ["al01","Atlantic"],
         "Bertha" : ["al02","Atlantic"],
@@ -495,5 +456,3 @@ h_2008 ={
         "Seventeen-e" : ["ep17", "East Pacific"],
         "Polo" : ["ep18", "East Pacific"]
 	    }
-
-#-----------------------------------------------------------------
