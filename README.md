@@ -6,6 +6,12 @@ PyNimbus's goal is to take the "middle man" out of downloading and sorting data 
 
 PyNimbus follows the [semantic version](https://semver.org/) numbering system.
 
+## Contributing to PyNimbus
+If you wish to contribute to PyNimbus, please see the [contributing file](https://github.com/WxBDM/PyNimbus/blob/master/Contributing.md).
+
+## Asking questions about PyNimbus
+If you have questions on how to use PyNimbus, please send me an email. The email can be found in the contributing file above. Please do not open an issue or pull request for questions regarding the usage of PyNimbus.
+
 ## PyNimbus Function Naming Convention
 
 PyNimbus follows a fairly straight-forward naming convention. Here is how it is mapped out: `get_<NWS BRANCH>_<PRODUCT>_<DATA TYPE>`.
@@ -36,11 +42,9 @@ Future implementations include:
 
 The easiest way to install is through pip: `pip install pynimbus`
 
-Note that the only requires pandas >= 0.23.2
-
 ## License
 
-PyNimbus falls under the BSD 3-Clause license. See the [License page]([https://github.com/WxBDM/PyNimbus/blob/master/LICENSE.md](https://github.com/WxBDM/PyNimbus/blob/master/LICENSE.md) for more information.
+PyNimbus falls under the BSD 3-Clause license. See the [License page](https://github.com/WxBDM/PyNimbus/blob/master/LICENSE.md) for more information.
 
 ## Important Links
 
