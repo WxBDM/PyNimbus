@@ -22,15 +22,15 @@ If you are here for Hacktoberfest, pop on over to the [Issue Tracker](https://gi
 
 #### What if I don't want to code?
 
-No worries, there's a lot of house-keeping related things that needs to get done such as improving existing documentation. Check out the HTML documentation page and see if there's anything that can be improved upon. There's always room for more examples. If you want to get in touch with your inner artist, you can create diagrams and/or flow charts of how stuff works in this project.
+No worries, there's a lot of house-keeping related things that needs to get done such as improving existing documentation. Check out the HTML documentation page and see if there's anything that can be improved upon. If you want to get in touch with your inner artist, you can create diagrams and/or flow charts of how stuff works in this project.
 
 #### What if I've never contributed to an open source project before?
 
-Don't worry, I got you covered. See below section (issuing a pull request) for step-by-step instructions.
+See below section (issuing a pull request) for step-by-step instructions.
 
 ## Issuing a pull request
 
-All contributions are made via pull requests. This section explains how to go about doing this. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
+All contributions are made via pull requests. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
 
 Once you're added to the project, fork the repository. Then, go into your GitHub profile, find the repository, and click on it. From there, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
 
@@ -38,11 +38,9 @@ From here, open a new terminal window and navigate to the directory where you wa
 
 Now, create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now type `git checkout YOUR_GITHUB_USERNAME` to switch to that branch. Now, you're able to begin working on your end of the project.
 
-Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_BRANCH_NAME`).
+Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push your branch (`git push origin YOUR_BRANCH_NAME`).
 
-Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
-
-If your code is accepted, congratulations! You have successfully made a contribution to the project. If not, then the project manager will guide you in the right direction of what should be done.
+Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. 
 
 #### IMPORTANT
 
