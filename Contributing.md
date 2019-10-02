@@ -4,6 +4,10 @@ First off, I want to be the first to say thank you for wanting to contribute to 
 
 If you have a question pertaining to the usage of PyNimbus, do not open an issue or pull request. Rather, contact the project manager directly. Information can be found under "Contact".
 
+## How the repository is set up
+
+The master branch is the code that is the latest version (that is, published on PyPi). The development branch is the branch that all of the contributions get merged into before getting pushed to the latest version. Every other branch is a contributor's "workspace". Each contributor works in their own branch, and when they are ready to have their code reviewed, they'll issue a pull request and a project manager will review the code before merging it into the development branch. When a new version is ready to be released, the development branch will be merged into master.
+
 ## Important links for contributions
 
 Below are some important links that you may need while contributing to the project.
@@ -44,7 +48,7 @@ Now, navigate to the repository on GitHub and click "Compare & Pull Request" and
 
 #### IMPORTANT
 
-Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git checkout` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
+Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. __Any pull requests in which modified code is not located in your branch will be rejected.__ In addition, any pull request to merge into master will be changed to the development branch. To see which branch you are working in, type `git checkout` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
 
 ### Hearing back from Pull Requests
 
