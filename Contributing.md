@@ -44,7 +44,7 @@ Now, create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (repla
 
 Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push your branch (`git push origin YOUR_BRANCH_NAME`).
 
-Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. 
+Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. Once your changes get merged to the development branch, your GitHub profile will be appended to the end of this document with a link to your GitHub profile. 
 
 #### IMPORTANT
 
