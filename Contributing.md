@@ -18,7 +18,7 @@ Below are some important links that you may need while contributing to the proje
 
 ## What can I do to contribute?
 
-[This]() is more of a question of "what can't I do to contribute?", simply because there is so much to do. The first place to start is by checking out the Issues Tracker and seeing if something there works for you. If nothing intrigues you, then look around at the documentation and see if there's anything to be improved upon there. TL;DR: look around, you'll find something eventually :)
+This is more of a question of "what can't I do to contribute?", simply because there is so much to do. The first place to start is by checking out the Issues Tracker and seeing if something there works for you. If nothing intrigues you, then look around at the documentation and see if there's anything to be improved upon there. TL;DR: look around, you'll find something eventually :)
 
 #### Hacktoberfest
 
