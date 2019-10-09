@@ -14,7 +14,7 @@ Below are some important links that you may need while contributing to the proje
 
 ## What can I do to contribute?
 
-[This]() is more of a question of "what can't I do to contribute?", simply because there is so much to do. The first place to start is by checking out the Issues Tracker and seeing if something there works for you. If nothing intrigues you, then look around at the documentation and see if there's anything to be improved upon there. TL;DR: look around, you'll find something eventually :)
+This is more of a question of "what can't I do to contribute?", simply because there is so much to do. The first place to start is by checking out the Issues Tracker and seeing if something there works for you. If nothing intrigues you, then look around at the documentation and see if there's anything to be improved upon there. TL;DR: look around, you'll find something eventually :)
 
 #### Hacktoberfest
 
@@ -32,15 +32,15 @@ Don't worry, I got you covered. See below section (issuing a pull request) for s
 
 All contributions are made via pull requests. This section explains how to go about doing this. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
 
-Once you're added to the project, fork the repository. Then, go into your GitHub profile, find the repository, and click on it. From there, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
+First, fork the repository. From here, go to your profile and go into the repsoitory you just forked. Then, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
 
-From here, open a new terminal window and navigate to the directory where you want to store the source code. Type `git clone` and paste the link you had copied. This will clone the repository locally.
+From here, open a new terminal window and navigate to the directory where you want to store the source code. There is no need to create a directory - the `clone` command will create the repository for you. Type `git clone` and paste the link you had copied. This will clone the repository locally.
 
-Now, create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now type `git checkout YOUR_GITHUB_USERNAME` to switch to that branch. Now, you're able to begin working on your end of the project.
+Now, navigate into the directory (`cd pynimbus`). Create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now, you're able to begin working on your end of the project.
 
-Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_BRANCH_NAME`).
+Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_GITHUB_NAME`).
 
-Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
+Now, navigate to the [original repository](https://github.com/WxBDM/PyNimbus) on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
 
 If your code is accepted, congratulations! You have successfully made a contribution to the project. If not, then the project manager will guide you in the right direction of what should be done.
 

@@ -6,63 +6,48 @@ Created on Wed Aug 28 09:12:46 2019
 @author: Brandon
 """
 
+import hurricane_names as hn
+import datetime
+
 class nhcOutlooks():
     
     def __init__(self, name, year, advisory_num): 
+        self._hurricane_info(name, int(year))
+        
         self.name = name
         self.yr = int(year)
         self.adv_n = str(advisory_num)
+    
+    def _hurricane_info(self, name, year):
         
-        self._check_inputs()
-    
-    def _import_hurricane_info():
-        # return hurrs[self.yr]
-        # for now, assume year is 2019.
-        return {
-            "Andrea"        : ["al01", "Atlantic"],
-            "Barry"         : ["al02", "Atlantic"],
-            "Three"         : ["al03", "Atlantic"],
-            "Chantal"       : ["al04", "Atlantic"],
-            "Dorian"        : ["al05", "Atlantic"],
-            "Erin"          : ["al06", "Atlantic"],
-            "Fernand"       : ["al07", "Atlantic"],
-            "Gabrielle"     : ["al08", "Atlantic"],
-            "Humberto"      : ["al09", "Atlantic"],
-            "Jerry"         : ["al10", "Atlantic"],
-            "Imelda"        : ["al11", "Atlantic"],
-            "Karen"         : ["al12", "Atlantic"],
-            "Lorenzo"       : ["al13", "Atlantic"],
-            "Alvin"         : ["ep01", "East Pacific"],
-            "Barbara"       : ["ep02", "East Pacific"],
-            "Cosme"         : ["ep03", "East Pacific"],
-            "Four-e"        : ["ep04", "East Pacific"],
-            "Dalila"        : ["ep05", "East Pacific"],
-            "Erick"         : ["ep06", "East Pacific"],
-            "Flossie"       : ["ep07", "East Pacific"],
-            "Gil"           : ["ep08", "East Pacific"],
-            "Henriette"     : ["ep09", "East Pacific"],
-            "Ivo"           : ["ep10", "East Pacific"],
-            "Juliette"      : ["ep11", "East Pacific"],
-            "Akoni"         : ["ep12", "East Pacific"],
-            "Kiko"          : ["ep13", "East Pacific"],
-            "Mario"         : ["ep14", "East Pacific"],
-            "Lorena"        : ["ep15", "East Pacific"],
-            "Narda"         : ["ep16", "East Pacific"]
-            }
-        # import the hurricane info; for now, hardcoded
-    
-    def _check_inputs(self):
-        # checks to see if parameters are correct
-        if not 2008 <= self.yr <= 2019:
+        def check_if_exists_in_dict():
+            
+            # put 2008 on top for forward compatability reasons - append to list below
+            # for future years (2020, etc) using elif.
+            if   year == 2008 : h_dict = hn.h_2008
+            elif year == 2009 : h_dict = hn.h_2009
+            elif year == 2010 : h_dict = hn.h_2010
+            elif year == 2011 : h_dict = hn.h_2011
+            elif year == 2012 : h_dict = hn.h_2012
+            elif year == 2013 : h_dict = hn.h_2013
+            elif year == 2014 : h_dict = hn.h_2014
+            elif year == 2015 : h_dict = hn.h_2015
+            elif year == 2016 : h_dict = hn.h_2016
+            elif year == 2017 : h_dict = hn.h_2017
+            elif year == 2018 : h_dict = hn.h_2018
+            elif year == 2019 : h_dict = hn.h_2019
+            
+            # if the name is in the dictionary, return. If not, raise error.
+            if name in h_dict:
+                return h_dict[name]
+            raise ValueError("{0} not in {1} - double check spelling and/or year.".format(name, year))
+        
+        # check to see if it's a valid year.
+        now = datetime.datetime.now()
+        if not 2008 <= year <= now.year:
             raise ValueError("Year must be between 2008 and current year")
         
-        if self.name not in self._import_hurricane_info():
-            raise ValueError("Cyclone name not in the specified year. Double check spelling and year.")
-
-    
-    
-    
-    
+        return check_if_exists_in_dict()
     
     
     
