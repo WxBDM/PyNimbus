@@ -6,8 +6,16 @@ try:
 except ValueError:
     from spcreports import spcreports
 
+try:
+    from .nhcoutlooks import nhcoutlooks
+except ValueError:
+    from nhcoutlooks import nhcoutlooks
+
 def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     '''Separates the SPC storm reports into respective hazard dataframes.
+    
+    Currently DOES NOT SUPPORT multiple days worth of dataframes - only one
+        day at a time.
     
     Parameters
     ----------
@@ -34,9 +42,12 @@ def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     reports_obj = spcreports(url_or_path, type_of_df)
     return reports_obj.df
 
-def get_nhc_past_cyclones_df(name, year, advisory_num):
+def get_nhc_past_cyclones_polygons(name, year, advisory_num):
     '''Retrieves previous cyclones from the NHC and returns geopandas dataframe
         associated with the cyclone given.
+    
+    Currently DOES NOT SUPPORT advisory number slicing (getting multiple
+        advisories at once)
     
     Parameters
     ----------
@@ -57,42 +68,7 @@ def get_nhc_past_cyclones_df(name, year, advisory_num):
     `geopandas dataframe`
         The dataframe with the given parameters
     '''
-    
-    # checks to see if parameters are correct
-    if not 2008 <= year <= 2019:
-        raise ValueError("Year must be between 2008 and current year")
-    
-    # factor into a different file once merge request is finished
-    h_2019 = {"Andrea" : ["al01", "Atlantic"],
-            "Barry" :  ["al02", "Atlantic"],
-            "Three" : ["al03", "Atlantic"],
-            "Chantal" : ["al04", "Atlantic"],
-            "Dorian" : ["al05", "Atlantic"],
-            "Erin" : ["al06", "Atlantic"],
-            "Fernand" : ["al07", "Atlantic"],
-            "Gabrielle" : ["al08", "Atlantic"],
-            "Humberto" : ["al09", "Atlantic"],
-            "Jerry" : ["al10", "Atlantic"],
-            "Imelda" : ["al11", "Atlantic"],
-            "Karen" : ["al12", "Atlantic"],
-            "Lorenzo" : ["al13", "Atlantic"],
-            "Alvin" : ["ep01", "East Pacific"],
-            "Barbara" : ["ep02", "East Pacific"],
-            "Cosme" : ["ep03", "East Pacific"],
-            "Four-e" : ["ep04", "East Pacific"],
-            "Dalila" : ["ep05", "East Pacific"],
-            "Erick" : ["ep06", "East Pacific"],
-            "Flossie" : ["ep07", "East Pacific"],
-            "Gil" : ["ep08", "East Pacific"],
-            "Henriette" : ["ep09", "East Pacific"],
-            "Ivo" : ["ep10", "East Pacific"],
-            "Juliette" : ["ep11", "East Pacific"],
-            "Akoni" : ["ep12", "East Pacific"],
-            "Kiko" : ["ep13", "East Pacific"],
-            "Mario" : ["ep14", "East Pacific"],
-            "Lorena" : ["ep15", "East Pacific"],
-            "Narda" : ["ep16", "East Pacific"],
-    }
+    cyclone_obj = nhcoutlooks(name, year, advisory_num)
     
     
     
