@@ -11,7 +11,7 @@ import os, requests, shutil, zipfile, io, shapefile
 import datetime
 from shapely.geometry import Polygon, LineString, Point, MultiPoint
 
-class nhcOutlooks():
+class nhcoutlooks():
     
     def __init__(self, name, year, advisory_num): 
         self.info = self._hurricane_info(name, int(year))
@@ -71,7 +71,7 @@ class nhcOutlooks():
         #   2. Remakes the directory
         #   3. Downloads from zip file url above
         #   4. Extracts information (now in memory!)
-        #   5. Removes folder
+        # Note: I'm leaving 
 
         if extract_dir is None:    
             path = os.path.join(os.getcwd(), "nhc_downloads")
@@ -79,6 +79,8 @@ class nhcOutlooks():
             path = os.path.join(extract_dir, "nhc_downloads")
         
         # checks if path exists
+        # NOTE: check to see if both shapefile AND dbf files are there.
+        # If so, don't redownload! :)
         if os.path.isdir(path):
             shutil.rmtree(path)
             if verbose: print("Found {}, removed".format(path))
@@ -103,20 +105,51 @@ class nhcOutlooks():
                 feature = shape.shapeRecords()[0]
                 first = feature.shape.__geo_interface__
                 if type_shp == 'pgn':
-                    self.outlook_polygon = Polygon(list(first['coordinates'][0]))
+                    polygon = Polygon(list(first['coordinates'][0]))
+                    self.polygon = Shapely_Geometry(polygon)
                 else:
-                    self.outlook_line = LineString([Point(a) for a in first['coordinates']])
+                    line = LineString([Point(a) for a in first['coordinates']])
+                    self.line = Shapely_Geometry(line)
             else: # the points
-                point_list = []
+                point_list = [] # have to iterate through records and append
                 for shp_record in shape.shapeRecords():
                     feature = shp_record
                     point = feature.shape.__geo_interface__
                     point_list.append(point['coordinates'])
-                shp_geom = MultiPoint(point_list)
-                self.outlook_points = shp_geom
+                points = MultiPoint(point_list)
+                self.points = Shapely_Geometry(points)
 
-a = nhcOutlooks("Barbara", 2019, 1)
-a.get_cyclone_outlook(verbose = True, extract_dir = "/Users/Brandon/Desktop")
+# This class modifies any of the shapely geometries that is integrated with PyNimbus.
+# TL;DR: This implements Shapely library, but follows the notation of PyNimbus.
+class Shapely_Geometry():
+    # Shapely documentation: https://shapely.readthedocs.io/en/stable/manual.html
+    
+    def __init__(self, shapely_geometry):
+        self.area = shapely_geometry.area
+        self.bounds = shapely_geometry.bounds
+        self._geom = shapely_geometry
+        self.display = shapely_geometry # this is for UI purposes.
+        self.coords = self._get_coordinates()
+        self.center = shapely_geometry.centroid
+        
+    def _get_coordinates(self):
+        return list(self._geom.__geo_interface__['coordinates'][0])
+     
+    def find_distance_to(self, other):
+        return self._geom.distance(other)
+    
+    def contains(self, other):
+        return self._geom.contains(other)
+    
+    def crosses(self, other):
+        return self._geom.crosses(other)
+    
+    def is_disjointed_from(self, other):
+        return self._geom.disjoint(other)
+    
+    def intersects_with(self, other):
+        return self._geom.intersects(other)
+
 
 
 

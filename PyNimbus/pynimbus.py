@@ -3,12 +3,12 @@
 
 try:
     from .spcreports import spcreports
-except ValueError:
+except:
     from spcreports import spcreports
 
 try:
     from .nhcoutlooks import nhcoutlooks
-except ValueError:
+except:
     from nhcoutlooks import nhcoutlooks
 
 def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
@@ -42,7 +42,7 @@ def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     reports_obj = spcreports(url_or_path, type_of_df)
     return reports_obj.df
 
-def get_nhc_past_cyclones_polygons(name, year, advisory_num):
+def get_nhc_past_cyclones_polygons(name, year, advisory_num, clean_files = False, **args):
     '''Retrieves previous cyclones from the NHC and returns geopandas dataframe
         associated with the cyclone given.
     
@@ -68,9 +68,9 @@ def get_nhc_past_cyclones_polygons(name, year, advisory_num):
     `geopandas dataframe`
         The dataframe with the given parameters
     '''
-    cyclone_obj = nhcoutlooks(name, year, advisory_num)
-    
-    
+    cyclone = nhcoutlooks(name, year, advisory_num)
+    cyclone.get_cyclone_outlook(**args)
+    return cyclone
     
     
     

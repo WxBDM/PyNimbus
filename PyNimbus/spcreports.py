@@ -2,12 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-try:
-    from .connections import connections
-except ValueError:
-    from connections import connections
 
-class spcreports(connections):
+class spcreports():
     
     def __init__(self, url, type_of_df):
         
