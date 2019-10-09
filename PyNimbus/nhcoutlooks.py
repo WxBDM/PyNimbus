@@ -127,28 +127,28 @@ class Shapely_Geometry():
     def __init__(self, shapely_geometry):
         self.area = shapely_geometry.area
         self.bounds = shapely_geometry.bounds
-        self._geom = shapely_geometry
+        self._geometry = shapely_geometry
         self.display = shapely_geometry # this is for UI purposes.
         self.coords = self._get_coordinates()
         self.center = shapely_geometry.centroid
         
     def _get_coordinates(self):
-        return list(self._geom.__geo_interface__['coordinates'][0])
+        return list(self._geometry.__geo_interface__['coordinates'][0])
      
     def find_distance_to(self, other):
-        return self._geom.distance(other)
+        return self._geometry.distance(other._geometry)
     
     def contains(self, other):
-        return self._geom.contains(other)
+        return self._geometry.contains(other._geometry)
     
     def crosses(self, other):
-        return self._geom.crosses(other)
+        return self._geometry.crosses(other._geometry)
     
     def is_disjointed_from(self, other):
-        return self._geom.disjoint(other)
+        return self._geometry.disjoint(other._geometry)
     
     def intersects_with(self, other):
-        return self._geom.intersects(other)
+        return self._geometry.intersects(other._geometry)
 
 
 
