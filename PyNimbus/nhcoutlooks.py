@@ -7,8 +7,9 @@ Created on Wed Aug 28 09:12:46 2019
 """
 
 import hurricane_names as hn
-import os, requests, shutil, zipfile, io
+import os, requests, shutil, zipfile, io, shapefile
 import datetime
+from shapely.geometry import Polygon, LineString, Point, MultiPoint
 
 class nhcOutlooks():
     
@@ -20,7 +21,7 @@ class nhcOutlooks():
     
     def _hurricane_info(self, name, year):
         
-        def check_if_exists_in_dict():
+        def get_cyclone_info():
             
             # put 2008 on top for forward compatability reasons - append to list below
             # for future years (2020, etc) using elif.
@@ -40,14 +41,15 @@ class nhcOutlooks():
             # if the name is in the dictionary, return. If not, raise error.
             if name in h_dict:
                 return h_dict[name]
-            raise ValueError("{0} not in {1} - double check spelling and/or year.".format(name, year))
+            raise ValueError\
+                ("{0} not in {1} - double check spelling and/or year.".format(name, year))
         
         # check to see if it's a valid year.
         now = datetime.datetime.now()
         if not 2008 <= year <= now.year:
             raise ValueError("Year must be between 2008 and current year")
         
-        return check_if_exists_in_dict()
+        return get_cyclone_info()
     
     def get_cyclone_outlook(self, verbose = False, extract_dir = None):
         
@@ -58,8 +60,9 @@ class nhcOutlooks():
         # Future work: is there a way to extract the information from the
         #   zipped shapefile without having to download it?
         
-        zip_file_url = "https://www.nhc.noaa.gov/gis/forecast/archive/\
-{0}{1}_5day_{2:03d}.zip".format(self.info[0], self.year, self.advisory_num)
+        zip_file_url = "https://www.nhc.noaa.gov/gis/forecast/archive/" + \
+            "{0}{1}_5day_{2:03d}.zip".format(self.info[0], self.year, 
+            self.advisory_num)
 
         if verbose: print("Downloading: " + zip_file_url)
         
@@ -80,28 +83,47 @@ class nhcOutlooks():
             shutil.rmtree(path)
             if verbose: print("Found {}, removed".format(path))
 
+        # steps 2 and 3.
         os.mkdir(path)
         r = requests.get(zip_file_url)
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(path)
         if verbose: print("Extracted into directory: {}".format(path))
-    
+        
+        # Step 4
+        for type_shp in ['lin', 'pts', 'pgn']:
+            # https://gis.stackexchange.com/questions/113799/how-to-read-a-shapefile-in-python
+            # Read in the shapefile
+            shape = shapefile.Reader(os.path.join(path, 
+                "{0}{1}-{2:03d}_5day_{3}.shp".format(self.info[0], self.year, 
+                 self.advisory_num, type_shp)))
+            
+            # open and save the polygon, etc with shapely.
+            if type_shp != 'pts': # polygon or line
+                feature = shape.shapeRecords()[0]
+                first = feature.shape.__geo_interface__
+                if type_shp == 'pgn':
+                    self.outlook_polygon = Polygon(list(first['coordinates'][0]))
+                else:
+                    self.outlook_line = LineString([Point(a) for a in first['coordinates']])
+            else: # the points
+                point_list = []
+                for shp_record in shape.shapeRecords():
+                    feature = shp_record
+                    point = feature.shape.__geo_interface__
+                    point_list.append(point['coordinates'])
+                shp_geom = MultiPoint(point_list)
+                self.outlook_points = shp_geom
 
 a = nhcOutlooks("Barbara", 2019, 1)
+a.get_cyclone_outlook(verbose = True, extract_dir = "/Users/Brandon/Desktop")
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
