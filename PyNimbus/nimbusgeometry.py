@@ -7,38 +7,24 @@ Created on Thu Oct 10 09:27:29 2019
 """
 
 import math
-from shapely.geometry import Polygon, LineString, Point, MultiPoint
+import shapely
 
 # This class encapsulates shapely geometries that is integrated with PyNimbus.
-class PyNimbus_Geometry(object):
-    '''All polygons that are created using PyNimbus implement a lot of the features
-    from the Shapely library. However, not all are needed and there are some methods
-    that are useful for PyNimbus's purposes.
-    
-    For a full list of the shapely library, visit the documentation:
-        https://shapely.readthedocs.io/en/stable/manual.html
-        
-    All geometries are in lat/lon coordinates'''
-    
-    
-    def set_attributes(self, pynimbus_geometry):
+class PyNimbusGeometry():
+
+    def __init__(self, pynimbus_geometry):
+        '''Sets the attributes to all PyNimbus Geometries'''        
         self.area = pynimbus_geometry.area       # area
         self.bounds = pynimbus_geometry.bounds   # min/max of upper/lower/left/right
         self._geometry = pynimbus_geometry       # needed for below methods
         self.display = pynimbus_geometry         # this is for UI purposes
-        self.coords = self._get_coordinates()   # coordinates of geometry
         self.center = pynimbus_geometry.centroid # center of geometry
         
-    def _get_coordinates(self):
-        return list(self._geometry.__geo_interface__['coordinates'][0])
-     
     def find_distance_to(self, other):
         '''Finds the distance between two PyNimbus geometries using the
-        Haversine formula between two points.
-        
-        Note that this only calculates the distance between two NimbusPoints.
-        NimbusLines and NimbusPolygons shouldn't be used. Unexpected results
-        may occur (and likely will).
+        Haversine formula between two points. Note that this only calculates the 
+        distance between two points. Other PyNimbus Geometries sucha s lines
+        and polygons shouldn't be used. Unexpected results may occur (and likely will).
         
         Parameters
         ----------
@@ -108,81 +94,76 @@ class PyNimbus_Geometry(object):
         boolean: `boolean`
         '''
         return self._geometry.intersects(other._geometry)
-
-
-class DataChecks():
     
-    def check_point_type(self, pair):
-        
-        # data STRUCTURE checking
-        # if it's a list, convert to tuple
-        if type(pair) is list:
-            pair = tuple(pair)
-        # if it's anything else but a tuple, raise error.
-        if type(pair) is not tuple:
-            raise TypeError("Lat/Lon pairs must be a tuple.")
-        
-        # length checking
-        if len(pair) != 2:
-            raise TypeError("Lat/Lon pairs need to be length of 2.")
-            
-        # data TYPE checking
-        type_pairs = [pair[0], pair[1]]
-        for i in [0, 1]:
-            # if it's an int, change to float
-            if type(type_pairs[i]) is int:
-                type_pairs[i] = float(type_pairs[i])
-            # if it's anything else but a float, raise error.
-            if type(type_pairs[i]) is not float:
-                raise TypeError("Ensure all pairs of lats/lons are ints or floats.")
-            
-        # Check if lat/lon falls within the proper range(s)
-        # latitude: -90 to 90 inclusive
-        # longitude: -180 to 180 inclusive
-        if type_pairs[0] < -90.0  or type_pairs[0] > 90.0:
-            raise TypeError("Latitude value must be -90 <= lat <= 90")
-        if type_pairs[1] < -180 or type_pairs[0] > 180:
-            raise TypeError("Longitude value must be -180 <= lon <= 180")
-        
-        return tuple(type_pairs)
+def check_point_type(self, pair):
     
-    def check_polygon_or_line_type(self, collection):
+    # data STRUCTURE checking
+    # if it's a list, convert to tuple
+    if isinstance(pair, list):
+        pair = tuple(pair)
+    # if it's anything else but a tuple, raise error.
+    if not isinstance(pair, tuple):
+        raise TypeError("Lat/Lon pairs must be a tuple or list.")
+    
+    # length checking
+    if len(pair) != 2:
+        raise TypeError("Lat/Lon pairs need to be length of 2.")
         
-        # Check steps:
-        # 1. If the outer structure is a list
-        # 2. If there's at least 3 elements
-        # 3. If all elements are a tuple (simply call check_point_type)
+    # data TYPE checking
+    type_pairs = [pair[0], pair[1]]
+    for i in [0, 1]:
+        # if it's an int, change to float
+        if isinstance(type_pairs[i], int):
+            type_pairs[i] = float(type_pairs[i])
+        # if it's anything else but a float, raise error.
+        if not isinstance(type_pairs[i], float):
+            raise TypeError("Ensure all pairs of lats/lons are ints or floats.")
         
-        # Step 1
-        if type(collection) != list:
-            phrase = '''Collection must be a list. For example:
-    collection = [(9, 10), (2, 4), (3, 1), ...] where tuples are lat/lon pairs'''
-            raise TypeError(phrase)
-        
-        # Step 2
-        if len(collection) < 3:
-            raise ValueError("Polygon must contain at least 3 lat/lon pairs")
-        
-        # Step 3
-        # using enumerate here because there's a possibility that the tuple
-        #   needs to get replaced; also allows to get the length
-        for index, element in enumerate(collection):
-            pair = self.check_point_type(element)
-            collection[index] = pair
-        
-        return [collection, len(collection)]
+    # Check if lat/lon falls within the proper range(s)
+    # latitude: -90 to 90 inclusive
+    # longitude: -180 to 180 inclusive
+    if type_pairs[0] < -90.0  or type_pairs[0] > 90.0:
+        raise TypeError("Latitude value must be -90 <= lat <= 90")
+    if type_pairs[1] < -180 or type_pairs[0] > 180:
+        raise TypeError("Longitude value must be -180 <= lon <= 180")
+    
+    return tuple(type_pairs)
+
+def check_point_collection(self, collection):
+    
+    # Check steps:
+    # 1. If the outer structure is a list
+    # 2. If there's at least 3 elements
+    # 3. If all elements are a tuple (simply call check_point_type)
+    
+    # Step 1
+    if not isinstance(collection, list):
+        phrase = '''Collection must be a list. For example:
+collection = [(9, 10), (2, 4), (3, 1), ...] where tuples are lat/lon pairs'''
+        raise TypeError(phrase)
+    
+    # Step 2
+    if len(collection) < 3:
+        raise ValueError("Polygon must contain at least 3 lat/lon pairs")
+    
+    # Step 3
+    # using enumerate here because there's a possibility that the tuple
+    #   needs to get replaced; also allows to get the length
+    for index, element in enumerate(collection):
+        pair = self.check_point_type(element)
+        collection[index] = pair
+    
+    return [collection, len(collection)]
             
-            
-class NimbusPoint(DataChecks, PyNimbus_Geometry):
+class Point(PyNimbusGeometry):
     # This class creates a NimbusPoint - shapely.
     def __init__(self, lat_lon_pair):
-        _pair = super().check_point_type(lat_lon_pair) # Data Checks
-        self._point = Point(_pair) # create the point using shapely
+        _pair = check_point_type(lat_lon_pair) # Data Checks
+        self._point = shapely.geometry.Point(_pair) # create the point using shapely
         
         # sets lat and lon of point.
         self.lat = self._point.__geo_interface__['coordinates'][0]
         self.lon = self._point.__geo_interface__['coordinates'][1]
-        super().set_attributes(self._point) # Sets rest of attributes; see PyNimbus_Geometry
     
     def __len__(self):
         return 2
@@ -194,21 +175,29 @@ class NimbusPoint(DataChecks, PyNimbus_Geometry):
         # Returns a tuple containing (lat, lon) pair.
         return(tuple(self.lat, self.lon))
 
-
-class NimbusPolygon(DataChecks, PyNimbus_Geometry):
-    # this class creates a NimbusPolygon - Shapely Polygon
-    def __init__(self, lat_lon_pair_list):
-        # collection returns the "corrected" collection and the length of it.
-        self.__collection = super().check_polygon_or_line_type(lat_lon_pair_list)
-        self._polygon = Polygon(self.__collection[0]) # the shapely polygon
-        super().set_attributes(self._polygon) # sets remainder attributes
+class _PointCollections(PyNimbusGeometry):
     
     def __len__(self):
-        return self.__collection[1]
+        return self.length
     
     def __repr__(self):
-        return self.__polygon
-
+        if isinstance(self, NimbusPolygon):
+            type_instance = 'Polygon'
+        elif isinstance(self, NimbusLine):
+            type_instance = 'Line'
+        elif isinstance(self, NimbusScatterPoints):
+            type_instance(self, 'Scatter Points')
+        
+        phrase = '''PyNimbus {6} object.
+    Length:         {0}
+    Max Latitude:   {1}
+    Max Longitude:  {2}
+    Min Latitude:   {3}
+    Min Longitude:  {4}
+    Center lat/lon: {5}'''.format(self.__len__(), self.bounds[0], self.bounds[1], 
+        self.bounds[2], self.bounds[3], self.center.coords[0], type_instance)
+        return phrase
+    
     def lats_to_list(self):
         return [coord[0] for coord in self.iterable_pairs_coords()]
 
@@ -218,20 +207,45 @@ class NimbusPolygon(DataChecks, PyNimbus_Geometry):
     def iterable_pairs_coords(self):
         return self.coords
     
-class NimbusLine(DataChecks, PyNimbus_Geometry):
+    def get_collection(self, pair_list):
+        info = check_point_collection(pair_list)
+        self.length = info[1]
+        return info[0]
+    
+    def get_coords(self):
+        return list(self._polygon.__geo_interface__['coordinates'][0])
+
+class NimbusPolygon(_PointCollections):
+    # this class creates a NimbusPolygon - Shapely Polygon
+    def __init__(self, lat_lon_pair_list):
+        # collection returns the "corrected" collection and the length of it.
+        self.__collection = super().get_collection(lat_lon_pair_list)
+        self._polygon = shapely.geometry.Polygon(self.__collection) # the shapely polygon
+        self.coords = super().get_coords()
+        super().set_attributes(self._polygon) # sets remainder attributes
+
+    
+class NimbusLine(_PointCollections):
     # this class creates a NimbusLine - Shapely Line
     def __init__(self, lat_lon_pair_list):
-        self.__collection = super().check_polygon_or_line_type(lat_lon_pair_list)
-        self._polygon = LineString(self.__collection[0]) # the shapely polygon
+        self.__collection = super().get_collection(lat_lon_pair_list)
+        self._polygon = shapely.geometry.LineString(self.__collection) # the shapely polygon
+        self.coords = super().get_coords()
         super().set_attributes(self._polygon) # sets remainder attributes
     
-    def get_line(self):
-        pass
-
-
-
-
-
+    def __len__(self):
+        return self.__collection[1]
+    
+class NimbusScatterPoints(_PointCollections):
+    # this class creates a NimbusLine - Shapely Line
+    def __init__(self, lat_lon_pair_list):
+        self.__collection = super().get_collection(lat_lon_pair_list)
+        self._polygon = shapely.geometry.MultiPoint(self.__collection) # the shapely polygon
+        self.coords = super().get_coords()
+        super().set_attributes(self._polygon) # sets remainder attributes
+    
+    def __len__(self):
+        return self.__collection[1]
 
 
 
