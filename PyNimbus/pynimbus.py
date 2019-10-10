@@ -7,9 +7,9 @@ except:
     from spcreports import spcreports
 
 try:
-    from .nhcoutlooks import nhcoutlooks
+    from .nhcoutlooks import nhcoutlook
 except:
-    from nhcoutlooks import nhcoutlooks
+    from nhcoutlooks import nhcoutlook
 
 def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     '''Separates the SPC storm reports into respective hazard dataframes.
@@ -42,7 +42,7 @@ def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     reports_obj = spcreports(url_or_path, type_of_df)
     return reports_obj.df
 
-def get_nhc_past_cyclones_polygons(name, year, advisory_num, clean_files = False, **args):
+def get_nhc_past_cyclone(name, year, advisory_num, clean_files = False, **args):
     '''Retrieves previous cyclones from the NHC and returns geopandas dataframe
         associated with the cyclone given.
     
@@ -65,10 +65,10 @@ def get_nhc_past_cyclones_polygons(name, year, advisory_num, clean_files = False
     
     Returns
     -------
-    `geopandas dataframe`
-        The dataframe with the given parameters
+    `object`
+        An object containing the Polygon, Line, and Points as PyNimbus Geometries
     '''
-    cyclone = nhcoutlooks(name, year, advisory_num)
+    cyclone = nhcoutlook(name, year, advisory_num)
     cyclone.get_cyclone_outlook(**args)
     return cyclone
     
