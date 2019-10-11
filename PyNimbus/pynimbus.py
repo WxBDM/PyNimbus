@@ -71,9 +71,7 @@ def get_nhc_past_cyclone(name, year, advisory_num, clean_files = False, **args):
     cyclone = nhcoutlook(name, year, advisory_num)
     cyclone.get_cyclone_outlook(**args)
     return cyclone
-    
-    
-    
+        
     
     
     
