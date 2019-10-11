@@ -186,16 +186,21 @@ class _PointCollections(PyNimbusGeometry):
         elif isinstance(self, Line):
             type_instance = 'Line'
         elif isinstance(self, ScatterPoints):
-            type_instance(self, 'Scatter Points')
+            type_instance = 'Scatter Points'
         
-        phrase = '''PyNimbus {6} object.
+        phrase = '''PyNimbus {5} object.
     Number of Points: {0}
     Max Latitude:     {1}
     Max Longitude:    {2}
     Min Latitude:     {3}
-    Min Longitude:    {4}
-    Center lat/lon:   {5}'''.format(self.__len__(), self.bounds[0], self.bounds[1], 
-        self.bounds[2], self.bounds[3], self.center.coords[0], type_instance)
+    Min Longitude:    {4}'''.format(self.__len__(), self.bounds[0], self.bounds[1], 
+        self.bounds[2], self.bounds[3], type_instance)
+        
+        # without this, there is recursion. it eliminates this error.
+        if type_instance != "Scatter Points":
+            phrase += '''
+    Center Point:     {}'''.format(self.center.coords[0])
+    
         return phrase
     
     def lats_to_list(self):
