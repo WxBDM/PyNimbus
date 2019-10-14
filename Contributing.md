@@ -67,3 +67,7 @@ The following is a list of people who have contributed to PyNimbus:
 __Project Owner/Manager:__ Brandon Molyneaux
 
 __Project contributors:__ 
+
+[rishabmenon](https://github.com/rishabmenon)
+
+[mtaew](https://github.com/mtaew)

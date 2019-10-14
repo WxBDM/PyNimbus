@@ -8,26 +8,27 @@ Welcome to the PyNimbus documentation!
 PyNimbus is a Python package that aims to aid the process of obtaining select National Weather Service products and organizing the data of the product in a "ready to go" format. This "ready to go" format is designed to be able to be immediately integrated in any project/application that requires data analysis or visualization.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    installguide
    SPC Storm Reports <tutorials/stormreports>
+   NHC Cyclones <tutorials/nhccyclones>
 
 Here is a general overview of how PyNimbus works on both the user-end and on the "back-end":
 
-.. image:: _static/flowchart.png
+.. image:: _static/v0.0.5_functionality.png
 
 Note that PyNimbus follows a naming convention, which is (not explicitly) shown in the above chart. This naming convention is as such:
 
 .. code-block:: python
 
-	pynimbus.get_<NWS Branch>_<Product>_<Return Data Type>(**kwargs, *args)
+	pynimbus.get_<NWS Branch>_<Product>(**kwargs, *args)
 
-For example, if we want to get the Storm Prediction Center outlook for Day 1, the method that would be called is:
+For example, if we wanted to get cyclone information from the National Hurricane Center:
 
 .. code-block:: python
 
-	pynimbus.get_spc_day1_outlook_polygons(**kwargs, *args)
+	pynimbus.get_nhc_previous_cyclone(**kwargs, *args)
 
 Note that some of the functions listed above may not be in PyNimbus at the current moment. PyNimbus is still under development, but is useable in its current state.
 

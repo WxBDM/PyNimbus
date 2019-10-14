@@ -10,7 +10,8 @@ import math
 import shapely.geometry as sg
 
 def check_point_type(pair):
-    
+    '''Checks if the data type (lat/lon) is correct.
+    Expected: Int or Float.'''
     # data STRUCTURE checking
     # if it's a list, convert to tuple
     if isinstance(pair, list):
@@ -44,6 +45,7 @@ def check_point_type(pair):
     return tuple(type_pairs)
 
 def check_point_collection(collection):
+    '''Checks to ensure the point collection is formatted correctly.'''
     
     # Check steps:
     # 1. If the outer structure is a list
@@ -78,14 +80,15 @@ class PyNimbusGeometry():
         self.area = pynimbus_geometry.area       # area
         self.bounds = pynimbus_geometry.bounds   # min/max of upper/lower/left/right
         self._geometry = pynimbus_geometry       # needed for below methods
-        self.display = pynimbus_geometry         # this is for UI purposes
-        self.center = pynimbus_geometry.centroid # center of geometry
+        self.peek = pynimbus_geometry         # this is for UI purposes
+        self.center = pynimbus_geometry.centroid.coords[0] # center of geometry
         
     def find_distance_to(self, other):
-        '''Finds the distance between two PyNimbus geometries using the
+        '''Finds the distance between two PyNimbus Point geometry using the
         Haversine formula between two points. Note that this only calculates the 
-        distance between two points. Other PyNimbus Geometries sucha s lines
-        and polygons shouldn't be used. Unexpected results may occur (and likely will).
+        distance between two points. Other PyNimbus Geometries such as lines
+        and polygons shouldn't be used. Unexpected results may occur (and likely 
+        will).
         
         Parameters
         ----------
@@ -158,6 +161,12 @@ class PyNimbusGeometry():
         return self._geometry.intersects(other._geometry)
             
 class Point(PyNimbusGeometry):
+    '''Class: PyNimbus Point.
+    This class wraps a shapely Point and implements some of it's features.
+    However, it applies specifically to PyNimbus's applications.
+    This does not inheret the point collection class, as the features
+    there are not needed.
+    '''
     # This class creates a NimbusPoint - shapely.
     def __init__(self, lat_lon_pair):
         _pair = check_point_type(lat_lon_pair) # Data Checks
@@ -171,24 +180,33 @@ class Point(PyNimbusGeometry):
     def __len__(self):
         return 2
     
+    def __repr__(self):
+        string = '''PyNimbus Point Geometry object.
+    Latitude:  {0}
+    Longitude: {1}
+        '''.format(self.lat, self.lon)
+        return string
+    
     def get_coordinates(self):
         # Returns a tuple containing (lat, lon) pair.
         return tuple(self.lat, self.lon)
 
 class _PointCollections(PyNimbusGeometry):
-    
+
     def __len__(self):
+        '''Returns the length of the geometry'''
         return self.length
     
     def __repr__(self):
+        '''String representation'''
         if isinstance(self, Polygon):
             type_instance = 'Polygon'
         elif isinstance(self, Line):
             type_instance = 'Line'
         elif isinstance(self, ScatterPoints):
             type_instance = 'Scatter Points'
-        
-        phrase = '''PyNimbus {5} object.
+            
+        phrase = '''PyNimbus {5} Geometry object.
     Number of Points: {0}
     Max Latitude:     {1}
     Max Longitude:    {2}
@@ -199,53 +217,89 @@ class _PointCollections(PyNimbusGeometry):
         # without this, there is recursion. it eliminates this error.
         if type_instance != "Scatter Points":
             phrase += '''
-    Center Point:     {}'''.format(self.center.coords[0])
+    Center Point:     {}'''.format(self.center)
     
         return phrase
     
     def lats_to_list(self):
+        '''Generates a list of latitudes'''
         return [coord[0] for coord in self.get_coords()]
 
     def lons_to_list(self):
+        '''Generates a list of longitudes'''
         return [coord[1] for coord in self.get_coords()]
     
-    def get_collection(self, pair_list):
+    def _get_collection(self, pair_list):
+        '''Returns the collection of a list of pairs. Used in checking data types.
+        Also sets the length of the collection to be used by __len__().'''
+        
         info = check_point_collection(pair_list)
         self.length = info[1]
         return info[0]
     
     def get_coords(self):
-        return list(self._polygon.__geo_interface__['coordinates'][0])
+        '''Returns the paired coordinates for a given PyNimbus geometry.'''
+        
+        if isinstance(self, Polygon):
+            return list(self._polygon.__geo_interface__['coordinates'][0])
+        elif isinstance(self, Line) or isinstance(self, ScatterPoints):
+            return list(self._polygon.__geo_interface__['coordinates'])
+        
+        return None # in case it's not any of these; unlikely to happen. Failsafe.
+
+    
+    def lat_lon_to_plot(self):
+        '''Prepares the latitudes and longitudes to be easily plotted
+        using a mapping package such as Cartopy.'''
+        if isinstance(self, Polygon):
+            x = list(self._polygon.exterior.xy[0])
+            y = list(self._polygon.exterior.xy[1])
+            return [x, y]
+        elif isinstance(self, Line):
+            x = list(self._polygon.xy[0])
+            y = list(self._polygon.xy[1])
+            return [x, y]
+        elif isinstance(self, ScatterPoints):
+            x = [p.x for p in self._polygon.geoms]
+            y = [p.y for p in self._polygon.geoms]
+            return [x, y]
 
 class Polygon(_PointCollections):
     # this class creates a NimbusPolygon - Shapely Polygon
+    '''Class: PyNimbus Polygon.
+    This class wraps a shapely Polygon and implements some of it's features.
+    However, it applies specifically to PyNimbus's applications.
+    '''
+    
     def __init__(self, lat_lon_pair_list):
         # collection returns the "corrected" collection and the length of it.
-        self.__collection = super().get_collection(lat_lon_pair_list)
+        self.__collection = super()._get_collection(lat_lon_pair_list)
         self._polygon = sg.Polygon(self.__collection) # the shapely polygon
         self.coords = super().get_coords()
         super().__init__(self._polygon)
 
 class Line(_PointCollections):
     # this class creates a NimbusLine - Shapely Line
+    '''Class: PyNimbus Line.
+    This class wraps a shapely Line and implements some of it's features.
+    However, it applies specifically to PyNimbus's applications.
+    '''
+    
     def __init__(self, lat_lon_pair_list):
          # collection returns the "corrected" collection and the length of it.
-        self.__collection = super().get_collection(lat_lon_pair_list)
+        self.__collection = super()._get_collection(lat_lon_pair_list)
         self._polygon = sg.LineString(self.__collection) # the shapely polygon
         self.coords = super().get_coords()
         super().__init__(self._polygon)
     
 class ScatterPoints(_PointCollections):
+    '''Class: PyNimbus Scatter Points.
+    This class wraps a shapely MultiPoint and implements some of it's features.
+    However, it applies specifically to PyNimbus's applications.
+    '''
     # collection returns the "corrected" collection and the length of it.
     def __init__(self, lat_lon_pair_list):
-        self.__collection = super().get_collection(lat_lon_pair_list)
+        self.__collection = super()._get_collection(lat_lon_pair_list)
         self._polygon = sg.MultiPoint(self.__collection) # the shapely polygon
         self.coords = super().get_coords()
         super().__init__(self._polygon)
-    
-
-
-
-
-
-
