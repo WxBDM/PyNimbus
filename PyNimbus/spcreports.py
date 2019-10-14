@@ -2,22 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-try:
-    from .connections import connections
-except ValueError:
-    from connections import connections
+from .nimbusgeometry import ScatterPoints
 
-class spcreports(connections):
-    
-    def __init__(self, url, type_of_df):
-        
-        self._url = url
-        self.df = pd.read_csv(url)
-        if type_of_df != 'all':
-            self._make_dataframes_from_pandas(self.df, type_of_df.lower())
+class _DataFrames():
 
     def _make_dataframes_from_pandas(self, df, type_df):
         '''makes the dataframes from pandas reading in csv file (or url)'''
+        
         # grabs the index where the next report begins
         findIndex = self.df['Time'].tolist()
         index = [i for i in range(len(findIndex)) if findIndex[i] == 'Time']
@@ -50,31 +41,42 @@ class spcreports(connections):
             d[oldName] = newCols[i]
         
         self.df = self.df.rename(columns = d)
+
+class _Polygons(_DataFrames):
     
-    def _set_meta(self):
-        '''Sets the metadata - used 
-        to check if a connection has been established'''
-        #Note: If using a URL, copy, paste, and modify YYMMDD:
-        #    https://www.spc.noaa.gov/climo/reports/YYMMDD_rpts_filtered.csv
-        #Or use one of the following:
-        #    https://www.spc.noaa.gov/climo/reports/today_filtered.csv
-        #    https://www.spc.noaa.gov/climo/reports/yesterday_filtered.csv
+    def _make_lat_lon_pairs(self):
         
-        # Metadata includes the day of the report. If it's "today", get
-        #   the current date. If it's "yesterday", get yesterday's date.
+        def isFloat(element):
+            try:
+                float(element)
+                return True
+            except:
+                return False
         
-        # the variable to identify "today", "yesterday" or "YYMMDD"
-        which = self._url.split("/")[-1]
-        which = which.split("_")[0]
+        lats_filtered = [float(element) for element in self.df['Lat'] if isFloat(element)]
+        lons_filtered = [float(element) for element in self.df['Lon'] if isFloat(element)]
         
-        # handle the YYMMDD
-        self.date = int(which)
-        
-        
-        
-        
-        
-        
-        
+        return list(zip(lats_filtered, lons_filtered))
+
+    
+class spcreports(_Polygons):
+     
+    def __init__(self, url, type_of_df):
+        self._url = url
+        self.df = pd.read_csv(url)
+        if type_of_df != 'all':
+            super()._make_dataframes_from_pandas(self.df, type_of_df.lower())
+            
+        self.points = ScatterPoints(super()._make_lat_lon_pairs())
+    
+    def __len__(self):
+        return len(self.df)
+
+    def __repr__(self):
+        phrase = '''PyNimbus Storm Reports object consisting of:
+    1) Pandas dataframe (attribute: df)
+    2) PyNimbus Geometry Scatter Point (attribute: points)
+    '''
+        return phrase
         
         

@@ -36,19 +36,29 @@ See below section (issuing a pull request) for step-by-step instructions.
 
 All contributions are made via pull requests. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
 
-Once you're added to the project, fork the repository. Then, go into your GitHub profile, find the repository, and click on it. From there, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
+First, fork the repository. From here, go to your profile and go into the repsoitory you just forked. Then, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
 
-From here, open a new terminal window and navigate to the directory where you want to store the source code. Type `git clone` and paste the link you had copied. This will clone the repository locally.
+From here, open a new terminal window and navigate to the directory where you want to store the source code. There is no need to create a directory - the `clone` command will create the repository for you. Type `git clone` and paste the link you had copied. This will clone the repository locally.
 
-Now, create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now type `git checkout YOUR_GITHUB_USERNAME` to switch to that branch. Now, you're able to begin working on your end of the project.
+Now, navigate into the directory (`cd pynimbus`). Create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now, you're able to begin working on your end of the project.
 
+<<<<<<< HEAD
 Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push your branch (`git push origin YOUR_BRANCH_NAME`).
+=======
+Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_GITHUB_NAME`).
+
+Now, navigate to the [original repository](https://github.com/WxBDM/PyNimbus) on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
+>>>>>>> wxbdm
 
 Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. Once your changes get merged to the development branch, your GitHub profile will be appended to the end of this document with a link to your GitHub profile. 
 
 #### IMPORTANT
 
+<<<<<<< HEAD
 Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. __Any pull requests in which modified code is not located in your branch will be rejected.__ In addition, any pull request to merge into master will be changed to the development branch. To see which branch you are working in, type `git checkout` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
+=======
+Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git branch` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
+>>>>>>> wxbdm
 
 ### Hearing back from Pull Requests
 
@@ -68,5 +78,13 @@ The following is a list of people who have contributed to PyNimbus:
 
 __Project Owner/Manager:__ Brandon Molyneaux
 
+<<<<<<< HEAD
 __Project contributors:__  
 [rishabmenon](https://github.com/rishabmenon)
+=======
+__Project contributors:__ 
+
+[rishabmenon](https://github.com/rishabmenon)
+
+[mtaew](https://github.com/mtaew)
+>>>>>>> wxbdm
