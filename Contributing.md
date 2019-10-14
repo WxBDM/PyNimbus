@@ -54,11 +54,7 @@ Now, navigate to the repository on GitHub and click "Compare & Pull Request" and
 
 #### IMPORTANT
 
-<<<<<<< HEAD
 Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. __Any pull requests in which modified code is not located in your branch will be rejected.__ In addition, any pull request to merge into master will be changed to the development branch. To see which branch you are working in, type `git checkout` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
-=======
-Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git branch` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
->>>>>>> wxbdm
 
 ### Hearing back from Pull Requests
 
@@ -78,13 +74,9 @@ The following is a list of people who have contributed to PyNimbus:
 
 __Project Owner/Manager:__ Brandon Molyneaux
 
-<<<<<<< HEAD
-__Project contributors:__  
-[rishabmenon](https://github.com/rishabmenon)
-=======
 __Project contributors:__ 
 
 [rishabmenon](https://github.com/rishabmenon)
 
 [mtaew](https://github.com/mtaew)
->>>>>>> wxbdm
+
