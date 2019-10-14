@@ -46,9 +46,6 @@ PyNimbus falls under the BSD 3-Clause license. See the [License page](https://gi
 ## Version Log
 
 v0.1.0 - Released 10/14/19
-1. PyNimbus geometries have been built. PyNimbus geometries are the building block to be able to structure and organize lat/lon pairs for easy access. 
+1. PyNimbus geometries have been built. PyNimbus geometries are the building block to be able to structure and organize lat/lon pairs for easy access.
 
-1. `get_nhc_past_cyclone` is now here! Check out the tutorial in the PyNimbus documentation to see more about how you can use Cartopy to plot National Hurricane Center outlooks with a few lines of code!
-
-2. PyNimbus Geometries! In essence, you can think of these as an encapsulation (and implementation) of Shapely geometries. These geometries are the foundation of all polygons, lines, and points used within PyNimbus. All geometries consist of other geometries down to a point (lat/lon pair). This is going to be needed going into the future.
-
+2. `get_nhc_past_cyclone_` has been implemented. See the tutorial for usage
