@@ -1,21 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-try:
-    from .spcreports import spcreports
-except:
-    from spcreports import spcreports
+from .nhcoutlooks import nhcoutlook
+from .spcreports import spcreports
 
-try:
-    from .nhcoutlooks import nhcoutlook
-except:
-    from nhcoutlooks import nhcoutlook
-
-def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
+def get_spc_storm_reports(url_or_path, type_of_df = 'all'):
     '''Separates the SPC storm reports into respective hazard dataframes.
     
-    Currently DOES NOT SUPPORT multiple days worth of dataframes - only one
-        day at a time.
+    Currently DOES NOT SUPPORT report day slicing (retrieving multiple days and
+        adding to one dataframe).
     
     Parameters
     ----------
@@ -33,21 +26,27 @@ def get_spc_storm_reports_df(url_or_path, type_of_df = 'all'):
     
     Returns
     -------
-    `pandas dataframe`
-        The dataframe specified with type_of_df parameter. If there are no
-        reports for the specified hazard, then an empty dataframe will be returned.
+    `object`
+        An object with both the dataframe and PyNimbus Scatter Point geometry.
     '''
+    return spcreports(url_or_path, type_of_df)
 
+def get_spc_storm_reports_df(url_or_path, type_of_df = 'all', surpress_warning = False):
+    '''This method is here for backwards compatability reasons. See 
+    `get_spc_storm_reports()` for all the details regarding this function.'''
     # gets the dataframe and returns it.
-    reports_obj = spcreports(url_or_path, type_of_df)
-    return reports_obj.df
+    if not surpress_warning:
+        print("This function will be depreciated in future versions." + \
+              "Use get_spc_storm_reports instead.")
+    
+    return get_spc_storm_reports(url_or_path, type_of_df)
 
-def get_nhc_past_cyclone(name, year, advisory_num, clean_files = False, **args):
+def get_nhc_past_cyclone(name, year, advisory_num, clean_files = True, **args):
     '''Retrieves previous cyclones from the NHC and returns geopandas dataframe
         associated with the cyclone given.
     
     Currently DOES NOT SUPPORT advisory number slicing (getting multiple
-        advisories at once)
+        advisories at once), as well as intermediate advisories (i.e. 24A, 12A, etc)
     
     Parameters
     ----------
@@ -66,19 +65,10 @@ def get_nhc_past_cyclone(name, year, advisory_num, clean_files = False, **args):
     Returns
     -------
     `object`
-        An object containing the Polygon, Line, and Points as PyNimbus Geometries
+        An object containing PyNimbus Polygon, Line, and Scatter Points geometries
     '''
+
     cyclone = nhcoutlook(name, year, advisory_num)
     cyclone.get_cyclone_outlook(**args)
-    return cyclone
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if clean_files: cyclone.clean_files()
+    return cyclone    

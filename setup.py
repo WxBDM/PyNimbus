@@ -12,7 +12,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='PyNimbus',
-    version='0.0.3',
+    version='0.0.5',
     long_description=README,
     long_description_content_type="text/markdown",
     description='A Python package to organize National Weather Service product data.',
@@ -21,7 +21,7 @@ setup(
     author_email='bdmolyne@gmail.com',
     license='BSD 3-clause "New" or "Revised License"',
     packages=['pynimbus'],
-    install_requires = ['pandas>=0.23.4'],
+    install_requires = ['pandas >= 0.23.4', "Shapely >= 1.6.4.post1"],
     zip_safe=True,
     classifiers=[
     "Development Status :: 3 - Alpha",

@@ -4,6 +4,10 @@ First off, I want to be the first to say thank you for wanting to contribute to 
 
 If you have a question pertaining to the usage of PyNimbus, do not open an issue or pull request. Rather, contact the project manager directly. Information can be found under "Contact".
 
+## How the repository is set up
+
+The master branch is the code that is the latest version (that is, published on PyPi). The development branch is the branch that all of the contributions get merged into before getting pushed to the latest version. Every other branch is a contributor's "workspace". Each contributor works in their own branch, and when they are ready to have their code reviewed, they'll issue a pull request and a project manager will review the code before merging it into the development branch. When a new version is ready to be released, the development branch will be merged into master.
+
 ## Important links for contributions
 
 Below are some important links that you may need while contributing to the project.
@@ -22,15 +26,15 @@ If you are here for Hacktoberfest, pop on over to the [Issue Tracker](https://gi
 
 #### What if I don't want to code?
 
-No worries, there's a lot of house-keeping related things that needs to get done such as improving existing documentation. Check out the HTML documentation page and see if there's anything that can be improved upon. There's always room for more examples. If you want to get in touch with your inner artist, you can create diagrams and/or flow charts of how stuff works in this project.
+No worries, there's a lot of house-keeping related things that needs to get done such as improving existing documentation. Check out the HTML documentation page and see if there's anything that can be improved upon. If you want to get in touch with your inner artist, you can create diagrams and/or flow charts of how stuff works in this project.
 
 #### What if I've never contributed to an open source project before?
 
-Don't worry, I got you covered. See below section (issuing a pull request) for step-by-step instructions.
+See below section (issuing a pull request) for step-by-step instructions.
 
 ## Issuing a pull request
 
-All contributions are made via pull requests. This section explains how to go about doing this. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
+All contributions are made via pull requests. Before doing issuing a pull request, please comment on an issue or send the project manager an email to explain what you want to work on.
 
 First, fork the repository. From here, go to your profile and go into the repsoitory you just forked. Then, click the green button that says "Clone or Download" and click the clipboard icon to copy the link.
 
@@ -38,13 +42,12 @@ From here, open a new terminal window and navigate to the directory where you wa
 
 Now, navigate into the directory (`cd pynimbus`). Create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now, you're able to begin working on your end of the project.
 
-Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_GITHUB_NAME`).
+Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push your branch (`git push origin YOUR_BRANCH_NAME`).
 
-Now, navigate to the [original repository](https://github.com/WxBDM/PyNimbus) on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
-
-If your code is accepted, congratulations! You have successfully made a contribution to the project. If not, then the project manager will guide you in the right direction of what should be done.
+Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. Once your changes get merged to the development branch, your GitHub profile will be appended to the end of this document with a link to your GitHub profile. 
 
 #### IMPORTANT
+
 
 Make sure you are working within the branch you created from the steps above and not any other branch. This should equate to your GitHub username. To see which branch you are working in, type `git branch` and an asterick (\*) will show up with the current branch. The master branch is reserved for the stable release, whereas "development" is the unstable release.
 
@@ -66,6 +69,8 @@ The following is a list of people who have contributed to PyNimbus:
 
 __Project Owner/Manager:__ Brandon Molyneaux
 
-__Project contributors:__  
+__Project contributors:__ 
+
 [rishabmenon](https://github.com/rishabmenon)
+
 [mtaew](https://github.com/mtaew)

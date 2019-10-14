@@ -6,10 +6,12 @@ Created on Wed Aug 28 09:12:46 2019
 @author: Brandon
 """
 
-import hurricane_names as hn
 import os, requests, shutil, zipfile, io, shapefile
-import datetime
-from nimbusgeometry import Line, Polygon, ScatterPoints
+import datetime, shutil
+from .nimbusgeometry import Line, Polygon, ScatterPoints
+
+from .hurricane_names import h_2019, h_2018, h_2017, h_2016, h_2015, h_2014, \
+    h_2013, h_2012, h_2011, h_2010, h_2009, h_2008
 
 class nhcoutlook():
     
@@ -18,6 +20,9 @@ class nhcoutlook():
         self.name = name
         self.year = int(year)
         self.advisory_num = int(advisory_num)
+
+    def clean_files(self):
+        shutil.rmtree(self._download_path)
     
     def _hurricane_info(self, name, year):
         
@@ -25,22 +30,23 @@ class nhcoutlook():
             
             # put 2008 on top for forward compatability reasons - append to list below
             # for future years (2020, etc).
-            if   year == 2008 : h_dict = hn.h_2008
-            elif year == 2009 : h_dict = hn.h_2009
-            elif year == 2010 : h_dict = hn.h_2010
-            elif year == 2011 : h_dict = hn.h_2011
-            elif year == 2012 : h_dict = hn.h_2012
-            elif year == 2013 : h_dict = hn.h_2013
-            elif year == 2014 : h_dict = hn.h_2014
-            elif year == 2015 : h_dict = hn.h_2015
-            elif year == 2016 : h_dict = hn.h_2016
-            elif year == 2017 : h_dict = hn.h_2017
-            elif year == 2018 : h_dict = hn.h_2018
-            elif year == 2019 : h_dict = hn.h_2019
+            if   year == 2008 : h_dict = h_2008
+            elif year == 2009 : h_dict = h_2009
+            elif year == 2010 : h_dict = h_2010
+            elif year == 2011 : h_dict = h_2011
+            elif year == 2012 : h_dict = h_2012
+            elif year == 2013 : h_dict = h_2013
+            elif year == 2014 : h_dict = h_2014
+            elif year == 2015 : h_dict = h_2015
+            elif year == 2016 : h_dict = h_2016
+            elif year == 2017 : h_dict = h_2017
+            elif year == 2018 : h_dict = h_2018
+            elif year == 2019 : h_dict = h_2019
             
             # if the name is in the dictionary, return. If not, raise error.
-            if name in h_dict:
-                return h_dict[name]
+            # also takes care of formatting the input string.
+            if name.capitalize() in h_dict:
+                return h_dict[name.capitalize()]
             raise ValueError\
                 ("{0} not in {1} - double check spelling and/or year.".format(name, year))
         
@@ -71,32 +77,31 @@ class nhcoutlook():
         #   2. Remakes the directory
         #   3. Downloads from zip file url above
         #   4. Extracts information (now in memory!)
-        # Note: I'm leaving 
 
         if extract_dir is None:    
-            path = os.path.join(os.getcwd(), "nhc_downloads")
+            self._download_path = os.path.join(os.getcwd(), "nhc_downloads")
         else:
-            path = os.path.join(extract_dir, "nhc_downloads")
+            self._download_path = os.path.join(extract_dir, "nhc_downloads")
         
         # checks if path exists
-        # NOTE: check to see if both shapefile AND dbf files are there.
-        # If so, don't redownload! :)
-        if os.path.isdir(path):
-            shutil.rmtree(path)
-            if verbose: print("Found {}, removed".format(path))
+        # NOTE: does not currently have ability to check to see if shapefiles exist
+        #   to prevent duplication in retrieving zip file.
+        if os.path.isdir(self._download_path):
+            shutil.rmtree(self._download_path)
+            if verbose: print("Found {}, removed".format(self._download_path))
 
         # steps 2 and 3.
-        os.mkdir(path)
+        os.mkdir(self._download_path)
         r = requests.get(zip_file_url)
         z = zipfile.ZipFile(io.BytesIO(r.content))
-        z.extractall(path)
-        if verbose: print("Extracted into directory: {}".format(path))
+        z.extractall(self._download_path)
+        if verbose: print("Extracted into directory: {}".format(self._download_path))
         
         # Step 4
         for type_shp in ['pgn', 'lin', 'pts']:
             # https://gis.stackexchange.com/questions/113799/how-to-read-a-shapefile-in-python
             # Read in the shapefile
-            shape = shapefile.Reader(os.path.join(path, 
+            shape = shapefile.Reader(os.path.join(self._download_path, 
                 "{0}{1}-{2:03d}_5day_{3}.shp".format(self.info[0], self.year, 
                  self.advisory_num, type_shp)))
             
