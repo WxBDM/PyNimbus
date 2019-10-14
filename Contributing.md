@@ -42,13 +42,9 @@ From here, open a new terminal window and navigate to the directory where you wa
 
 Now, navigate into the directory (`cd pynimbus`). Create a new branch by typing `git checkout -b YOUR_GITHUB_USERNAME` (replacing YOUR_GITHUB_NAME with your GitHub username). Now, you're able to begin working on your end of the project.
 
-<<<<<<< HEAD
 Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push your branch (`git push origin YOUR_BRANCH_NAME`).
-=======
-Once you are ready to submit, add your files (`git add .`), commit (`git commit -m "YOUR_MESSAGE_HERE"`), and push (`git push origin YOUR_GITHUB_NAME`).
 
-Now, navigate to the [original repository](https://github.com/WxBDM/PyNimbus) on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
->>>>>>> wxbdm
+Navigate to the [original repository](https://github.com/WxBDM/PyNimbus) on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it.
 
 Now, navigate to the repository on GitHub and click "Compare & Pull Request" and open a pull request. A project manager will review the code and either accept or deny it. If denial happens, don't worry! It's their job to ensure that you're given the push in the right direction. If your code is accepted, congratulations! You have successfully made a contribution to the project. Once your changes get merged to the development branch, your GitHub profile will be appended to the end of this document with a link to your GitHub profile. 
 
